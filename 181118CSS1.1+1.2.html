@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+    <meta http-equiv="Content" content="text/html;charse=utf-8"/>
+                         
+	<title>1.1css选择的样式</title>
+
+    css注释：/*注释语句*/
+
+    <!-- css引用：<style type="text/css">css样式</style> -->
+    <style type="text/css">
+        h1{color: red;
+           font-size: 30px;}
+       <!--       /*此处加入html注释是因为避免有些低版本的浏览器不识别样式，在网页上显示出来其英文代码，有了html注释就算识别不出来也不会显示出来了，放在能识别的浏览器里会自动忽略进而生效*/
+	    p{font-size:30px;
+	      color: blue;
+	      font-family: "隶书";}
+	   -->
+    </style> 
+	 
+
+	<br/><hr/>
+	<!--下方比上方多设置了几个h标签，对不同选择器设置相同css样式可以把要设置的标签一起写在大括号前面，分别用英文逗号隔开-->
+	<style type="text/css">
+	    /*h标签样式*/
+        h1,h2,h3,h4{font-size: 30px;}
+
+	    p{font-size:30px;
+	      color: blue;
+	      font-family: "隶书";}
+    </style> 
+
+
+    <!--此为外部样式-->
+    <link href="css.css" rel="stylesheet" type="text/css"/>
+
+
+    <!--此为导入式-->
+    写法1:
+    <style type="text/css">
+        @import "css.css"
+    </style>
+
+    写法2:
+    <style type="text/css">
+        @import url(css.css);
+    </style>
+
+</head>
+
+<body> 
+    <!--css：层叠样式表（Cascading Style Sheets），用于定义html内容在浏览器内的显示样式-->
+    <!--css已从css1发展到css3了，由于浏览器兼容问题，css2用得还是比较多-->
+    <!--css作用：简化html相关标签，网页体积小，下载快；解决内容与表现分离的问题；更好地维护网页，提高工作效率-->
+    <!--css除个别外，书写不分大小写，一般写小写较多。封号冒号大括号等要用英文状态-->
+    <!--学习内容：css基础语法；css使用方法；css选择器；css继承和层叠；css优先级；css命名规范-->
+ 
+    <!--css样式规则：（示例见上方head处）由两部分构成：选择器（即需要改变样式的html元素），声明（属性和值构成，二者用冒号：隔开）。声明后面要封号;声明放在样式分隔符：大括号里，紧跟选择器-->
+    <h1>css层叠样式</h1>
+    <h2>css层叠样式</h2>
+    <h3>css层叠样式</h3>
+    <h4>css层叠样式</h4>
+
+    <p>用于定义html内容再浏览器中的显示样，这段文字由于在头部处设置了css样式，变成了字体30px大的蓝色的隶书样式</p>
+
+    <!--如何引用css样式：行内样式（内联样式）   （ps：html和样式同时加载）
+    	               内部样式表（嵌入样式） （ps：html和样式同时加载）
+                               （上两个为内部，下两个为外部）
+    	               外部样式表（链接式）   （ps：页面加载时，同时加载css样式）
+    	               导入式               （ps：读取完html文件之后加载）
+    --> 
+    <!--本着css和html分离原则，另由于导入式会出现页面加载慢时样式显示不出来且兼容性问题，实际开发中使用外部样式表居多。好处就是多个文件可以使（引）用同一个样式文件，css只需下载一次-->
+
+    <!-- 行内样式：在开始标签内添加style样式属性，如：<p style="color:red;">内容</p> -->
+    <h1 style="coclor:red;font-size:20px">行内样式</h1>
+
+
+    <!-- 内部样式：把css样式代码写在：<style type="text/css">此处写样式</style>  （说明：<style>要放在<head>标签之间）-->
+    <p>设置这段话的样式看最上方head处，用于定义html内容在浏览器中的显示样，这段文字由于在头部处设置了css样式，变成了字体30px大的蓝色的隶书样式</p>
+
+
+    <!-- 外部样式：把css样式代码写在独立的一个文件中；扩展名：css文件名.css
+                  直接在xx.css文件中写入样式，如：h4{font-size: 30px;} 
+                  引入外部文件用link标签：<link href="xx.css" rel="stylesheet" type="text/css"/>
+                              link里三个属性含义：
+                                       href="xx.css" 路径，可以绝对可以相对路径
+                                       rel="stylesheet"表示文档和链接的关系
+                                       type="text/css"说明了内容是什么类型，此是样式表
+                  <link>要放在<head>标签之间
+    -->
+    <h5>我是用了外部样式</h5>
+
+
+    <!-- 导入式：@import “外部css样式” 
+    	        写在style标签内，有两种写法
+    	        和外部式差不多，也是用了css文件xx.css
+
+    	        写好放入head标签内（效果看头部标签最后处）
+
+
+    写法1:
+    <style type="text/css">
+        @import "css.css"
+    </style>
+
+    写法2:
+    <style type="text/css">
+        @import url(css.css);
+    </style>
+
+    -->
+    
+
+    对于同一个元素，同时使用以上方法来设置css样式，哪种才真正起作用呢？
+    css使用方法优先级： 行内样式>内部样式>外部样式（外部样式有link外部样式表和导入式@import）
+
+                 注意：1.链入外部样式表（即link那种）与内部样式表之间的优先级取决于所处位置的先后
+                      2.导入式与内部样式表的优先级还是内部样式高
+                      2.最后定义的优先级最高，即就近原则，通俗地说就是哪个代码更靠近元素哪个优先级更高。
+
+
+
+
+
+
+</body>
+
+</html>
